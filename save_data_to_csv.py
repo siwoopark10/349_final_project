@@ -4,11 +4,11 @@ import json
 import argparse
 
 
-def save_dataset(symbol, time_window):
-    credentials = json.load(open('creds.json', 'r'))
-    api_key = credentials['av_api_key']
+def save_dataset(symbol='MSFT', time_window='daily'):
+    # credentials = json.load(open('creds.json', 'r'))
+    # api_key = credentials['av_api_key']
     print(symbol, time_window)
-    ts = TimeSeries(key=api_key, output_format='pandas')
+    ts = TimeSeries(key='NFPL2YWOPFOLL8QK', output_format='pandas')
     if time_window == 'intraday':
         data, meta_data = ts.get_intraday(
             symbol='MSFT', interval='1min', outputsize='full')
@@ -25,9 +25,10 @@ def save_dataset(symbol, time_window):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('symbol', type=str, help="the stock symbol you want to download")
-    parser.add_argument('time_window', type=str, choices=[
-                        'intraday', 'daily', 'daily_adj'], help="the time period you want to download the stock history for")
+    # parser.add_argument('symbol', type=str, help="the stock symbol you want to download")
+    # parser.add_argument('time_window', type=str, choices=[
+    #                     'intraday', 'daily', 'daily_adj'], help="the time period you want to download the stock history for")
 
-    namespace = parser.parse_args()
-    save_dataset(**vars(namespace))
+    # namespace = parser.parse_args()
+    # save_dataset(**vars(namespace))
+    save_dataset()
